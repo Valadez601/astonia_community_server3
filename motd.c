@@ -53,6 +53,11 @@ int read_motd(void) {
 
 void show_motd(int nr) {
     char buf[1024],*a,*b;
+    
+    if (!motd) {
+        log_player(nr,LOG_SYSTEM,"Welcome to your generic Astonia 3 server.");
+        return;
+    }
 
     for (a=motd,b=buf; *a; a++) {
         if (*a=='\n') {
