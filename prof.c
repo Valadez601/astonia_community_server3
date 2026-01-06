@@ -170,7 +170,7 @@ void cmd_steal(int cn) {
         log_char(cn, LOG_SYSTEM, 0, "%s noticed your attempt and stopped you from stealing.", ch[co].name);
         ch[cn].endurance = 1;
         if (ch[co].flags & CF_PLAYER) {
-            log_char(co, LOG_SYSTEM, 0, "°c3%s tried to steal from you!", ch[cn].name);
+            log_char(co, LOG_SYSTEM, 0, "\260c3%s tried to steal from you!", ch[cn].name);
         } else notify_char(co, NT_GOTHIT, cn, 0, 0);
         return;
     }
@@ -189,7 +189,7 @@ void cmd_steal(int cn) {
         log_char(cn, LOG_SYSTEM, 0, "%s noticed your theft, but you managed to steal a %s anyway.", ch[co].name, it[in].name);
         ch[cn].endurance = 1;
         if (ch[co].flags & CF_PLAYER) {
-            log_char(co, LOG_SYSTEM, 0, "°c3%s stole your %s!", ch[cn].name, it[in].name);
+            log_char(co, LOG_SYSTEM, 0, "\260c3%s stole your %s!", ch[cn].name, it[in].name);
         } else notify_char(co, NT_GOTHIT, cn, 0, 0);
     } else log_char(cn, LOG_SYSTEM, 0, "You stole a %s without %s noticing.", it[in].name, ch[co].name);
 }

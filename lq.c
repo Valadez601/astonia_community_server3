@@ -263,21 +263,21 @@ int get_lq_item(int cn, char *ptr, struct lq_item *li, char *usage) {
     int keyID, base;
 
     if (!(ptr = get_str(ptr, basename, sizeof(basename)))) {
-        log_sys(cn, "°c3Missing base. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing base. Usage is: %s.", usage);
         return 0;
     }
     if (!(ptr = get_int(ptr, &keyID))) keyID = 0;
     if (!ptr || !(ptr = get_str(ptr, name, sizeof(name)))) name[0] = 0;
     if (!ptr || !(ptr = get_str(ptr, desc, sizeof(desc)))) desc[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return 0;
     }
 
     sprintf(modbasename, "lq_%s", basename);
     base = lookup_item(modbasename);
     if (!base) {
-        log_sys(cn, "°c3Base \"%s\" does not exist.", basename);
+        log_sys(cn, "\260c3Base \"%s\" does not exist.", basename);
         return 0;
     }
 
@@ -296,19 +296,19 @@ void cmd_npc(int cn, char *ptr) {
     static char *usage = "/npc <base:str> <level:int> <mode:chr> <respawn:int> [nick1:str] [nick2:str]";
 
     if (!(ptr = get_str(ptr, basename, sizeof(basename)))) {
-        log_sys(cn, "°c3Missing base. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing base. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &level))) {
-        log_sys(cn, "°c3Missing level. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing level. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_chr(ptr, &mode))) {
-        log_sys(cn, "°c3Missing mode. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing mode. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &respawn))) {
-        log_sys(cn, "°c3Missing respawn. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing respawn. Usage is: %s.", usage);
         return;
     }
 
@@ -316,7 +316,7 @@ void cmd_npc(int cn, char *ptr) {
     if (!ptr || !(ptr = get_str(ptr, nick[1], sizeof(nick[1])))) nick[1][0] = 0;
 
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -325,13 +325,13 @@ void cmd_npc(int cn, char *ptr) {
     sprintf(modbasename, "lq_%s", basename);
     base = lookup_char(modbasename);
     if (!base) {
-        log_sys(cn, "°c3Base \"%s\" does not exist.", basename);
+        log_sys(cn, "\260c3Base \"%s\" does not exist.", basename);
         return;
     }
 
     for (n = 1; n < MAXLQNPC; n++) {
         if (lq_npc[n].basename[0] && lq_npc[n].x == ch[cn].x && lq_npc[n].y == ch[cn].y) {
-            log_sys(cn, "°c3 %d %s %s is already at this position", n, lq_npc[n].nick[0], lq_npc[n].nick[1]);
+            log_sys(cn, "\260c3 %d %s %s is already at this position", n, lq_npc[n].nick[0], lq_npc[n].nick[1]);
             return;
         }
     }
@@ -361,16 +361,16 @@ void cmd_thrall(int cn, char *ptr) {
     static char *usage = "/thrall <nick|ID> <count:int> [thrallname:str]";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing nick. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing nick. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &count))) {
-        log_sys(cn, "°c3Missing count. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing count. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, name, sizeof(name)))) name[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -414,11 +414,11 @@ void cmd_killthrall(int cn, char *ptr) {
     static char *usage = "/killthrall <thrallname:str>";
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -441,15 +441,15 @@ void cmd_npcname(int cn, char *ptr) {
     static char *usage = "/npcname <npcID|nick> <name:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -468,7 +468,7 @@ void cmd_npcname(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set name of %d NPCs", cnt);
 }
 
@@ -478,20 +478,20 @@ void cmd_npcgold(int cn, char *ptr) {
     static char *usage = "/npcgold <npcID|nick> <gold:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &gold))) {
-        log_sys(cn, "°c3Missing gold. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing gold. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     if (gold > 2000) {
-        log_sys(cn, "°c3Too much gold.");
+        log_sys(cn, "\260c3Too much gold.");
         return;
     }
 
@@ -510,7 +510,7 @@ void cmd_npcgold(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set gold of %d NPCs", cnt);
 }
 
@@ -520,15 +520,15 @@ void cmd_npcsprite(int cn, char *ptr) {
     static char *usage = "/npcgold <npcID|nick> <sprite:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &sprite))) {
-        log_sys(cn, "°c3Missing gold. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing gold. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -552,7 +552,7 @@ void cmd_npcsprite(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set sprite of %d NPCs", cnt);
 }
 
@@ -562,15 +562,15 @@ void cmd_npcdesc(int cn, char *ptr) {
     static char *usage = "/npcdesc <npcID|nick> <description:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, desc, sizeof(desc)))) {
-        log_sys(cn, "°c3Missing description. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing description. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -589,7 +589,7 @@ void cmd_npcdesc(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set description of %d NPCs", cnt);
 }
 
@@ -599,15 +599,15 @@ void cmd_npcgreet(int cn, char *ptr) {
     static char *usage = "/npcgreet <npcID|nick> <text:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, text, sizeof(text)))) {
-        log_sys(cn, "°c3Missing text. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing text. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -626,7 +626,7 @@ void cmd_npcgreet(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set greeting of %d NPCs", cnt);
 }
 
@@ -636,15 +636,15 @@ void cmd_npckillmark(int cn, char *ptr) {
     static char *usage = "/npckillmark <npcID|nick> <mark:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &mark))) {
-        log_sys(cn, "°c3Missing mark. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing mark. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -668,7 +668,7 @@ void cmd_npckillmark(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set killmark of %d NPCs", cnt);
 }
 
@@ -678,15 +678,15 @@ void cmd_npchurtmark(int cn, char *ptr) {
     static char *usage = "/npchurtmark <npcID|nick> <mark:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &mark))) {
-        log_sys(cn, "°c3Missing mark. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing mark. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -710,7 +710,7 @@ void cmd_npchurtmark(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set hurtmark of %d NPCs", cnt);
 }
 
@@ -720,15 +720,15 @@ void cmd_npcmodlevel(int cn, char *ptr) {
     static char *usage = "/npcmodlevel <npcID|nick|all> <mod:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &mod))) {
-        log_sys(cn, "°c3Missing mod. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing mod. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -763,7 +763,7 @@ void cmd_npcmodlevel(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Changed level of %d NPCs", cnt);
 }
 
@@ -773,15 +773,15 @@ void cmd_npcrespawn(int cn, char *ptr) {
     static char *usage = "/npcrespawn <npcID|nick|all> <mod:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &mod))) {
-        log_sys(cn, "°c3Missing respawn time. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing respawn time. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -800,7 +800,7 @@ void cmd_npcrespawn(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Changed respawn time of %d NPCs to %d", cnt, mod);
 }
 
@@ -810,13 +810,13 @@ void cmd_npcpos(int cn, char *ptr) {
     static char *usage = "/npcpos <npcID|nick> [x:int] [y:int]";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &x))) x = 0;
     if (!ptr || !(ptr = get_int(ptr, &y))) y = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -835,7 +835,7 @@ void cmd_npcpos(int cn, char *ptr) {
         for (n = 0, m = 1; m < MAXLQNPC; m++) {
             if (lq_npc[m].basename[0] && (!strcasecmp(lq_npc[m].nick[0], nick) || !strcasecmp(lq_npc[m].nick[1], nick))) {
                 if (n) {
-                    log_sys(cn, "°c3Cannot set the same position for multiple NPCs.");
+                    log_sys(cn, "\260c3Cannot set the same position for multiple NPCs.");
                     return;
                 }
                 n = m;
@@ -843,14 +843,14 @@ void cmd_npcpos(int cn, char *ptr) {
         }
     }
     if (!n) {
-        log_sys(cn, "°c3NPC not found.");
+        log_sys(cn, "\260c3NPC not found.");
         return;
     }
 
     for (m = 1; m < MAXLQNPC; m++) {
         if (m == n || !lq_npc[m].basename[0]) continue;
         if (lq_npc[m].x == x && lq_npc[m].y == y) {
-            log_sys(cn, "°c3 %d %s %s is already at this position", m, lq_npc[m].nick[0], lq_npc[m].nick[1]);
+            log_sys(cn, "\260c3 %d %s %s is already at this position", m, lq_npc[m].nick[0], lq_npc[m].nick[1]);
             return;
         }
     }
@@ -866,23 +866,23 @@ void cmd_npcreply(int cn, char *ptr) {
     static char *usage = "/npcreply <npcID|nick> <nr:int> <trigger:str> <reply:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &nr))) {
-        log_sys(cn, "°c3Missing nr. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing nr. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, trigger, sizeof(trigger)))) {
-        log_sys(cn, "°c3Missing trigger. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing trigger. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, reply, sizeof(reply)))) {
-        log_sys(cn, "°c3Missing reply. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing reply. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -909,7 +909,7 @@ void cmd_npcreply(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set trigger/reply of %d NPCs", cnt);
 }
 
@@ -919,15 +919,15 @@ void cmd_npcwantitem(int cn, char *ptr) {
     static char *usage = "/npcwantitem <npcID|nick> <ID:int>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &ID))) {
-        log_sys(cn, "°c3Missing ID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing ID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -946,7 +946,7 @@ void cmd_npcwantitem(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set wantitem of %d NPCs", cnt);
 }
 
@@ -981,11 +981,11 @@ void cmd_npcshow(int cn, char *ptr) {
     static char *usage = "/npcshow <npcID|nick>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1004,7 +1004,7 @@ void cmd_npcshow(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Showed %d NPCs", cnt);
 }
 
@@ -1015,7 +1015,7 @@ void cmd_npcitem(int cn, char *ptr) {
     struct lq_item li;
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!get_lq_item(cn, ptr, &li, usage)) return;
@@ -1035,7 +1035,7 @@ void cmd_npcitem(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set item of %d NPCs", cnt);
 }
 
@@ -1046,7 +1046,7 @@ void cmd_npcrewarditem(int cn, char *ptr) {
     struct lq_item li;
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!get_lq_item(cn, ptr, &li, usage)) return;
@@ -1066,7 +1066,7 @@ void cmd_npcrewarditem(int cn, char *ptr) {
         }
     }
 
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set item of %d NPCs", cnt);
 }
 
@@ -1077,7 +1077,7 @@ void cmd_npclist(int cn, char *ptr) {
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) nick[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1107,11 +1107,11 @@ void cmd_npcdel(int cn, char *ptr) {
     static char *usage = "/npcdel <npcID|nick>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1131,7 +1131,7 @@ void cmd_npcdel(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Deleted %d NPCs.", cnt);
 }
 
@@ -1174,18 +1174,18 @@ void cmd_questsave(int cn, char *ptr) {
     static char *usage = "/questsave <name> [password]";
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, password, sizeof(password)))) password[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     for (n = 0; name[n]; n++)
         if (!isalpha(name[n])) {
-            log_sys(cn, "°c3Name contains illegal character %c.", name[n]);
+            log_sys(cn, "\260c3Name contains illegal character %c.", name[n]);
             return;
         }
 
@@ -1195,13 +1195,13 @@ void cmd_questsave(int cn, char *ptr) {
         read(handle, xpassword, 40);
         if (xpassword[0] && strcmp(xpassword, password)) {
             close(handle);
-            log_sys(cn, "°c3Cannot overwrite file with differing password.");
+            log_sys(cn, "\260c3Cannot overwrite file with differing password.");
             return;
         }
         lseek(handle, 0, SEEK_SET);
     } else handle = open(file, O_RDWR | O_CREAT, 0600);
     if (handle == -1) {
-        log_sys(cn, "°c3Cannot create file.");
+        log_sys(cn, "\260c3Cannot create file.");
         return;
     }
     write(handle, password, 40);
@@ -1220,18 +1220,18 @@ void cmd_questdel(int cn, char *ptr) {
     static char *usage = "/questdel <name> [password]";
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, password, sizeof(password)))) password[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     for (n = 0; name[n]; n++)
         if (!isalpha(name[n])) {
-            log_sys(cn, "°c3Name contains illegal character %c.", name[n]);
+            log_sys(cn, "\260c3Name contains illegal character %c.", name[n]);
             return;
         }
 
@@ -1239,7 +1239,7 @@ void cmd_questdel(int cn, char *ptr) {
     handle = open(file, O_RDWR);
 
     if (handle == -1) {
-        log_sys(cn, "°c3File not found.");
+        log_sys(cn, "\260c3File not found.");
         return;
     }
 
@@ -1247,10 +1247,10 @@ void cmd_questdel(int cn, char *ptr) {
     close(handle);
 
     if (xpassword[0] && strcmp(xpassword, password)) {
-        log_sys(cn, "°c3Cannot delete file with differing password.");
+        log_sys(cn, "\260c3Cannot delete file with differing password.");
         return;
     }
-    if (unlink(file)) log_sys(cn, "°c3Delete failed at system level.");
+    if (unlink(file)) log_sys(cn, "\260c3Delete failed at system level.");
     else log_sys(cn, "Deleted quest %s.", name);
 }
 
@@ -1261,18 +1261,18 @@ void cmd_questload(int cn, char *ptr) {
     static char *usage = "/questload <name> [password]";
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, password, sizeof(password)))) password[0] = 0;
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     for (n = 0; name[n]; n++)
         if (!isalpha(name[n])) {
-            log_sys(cn, "°c3Name contains illegal character %c.", name[n]);
+            log_sys(cn, "\260c3Name contains illegal character %c.", name[n]);
             return;
         }
 
@@ -1280,14 +1280,14 @@ void cmd_questload(int cn, char *ptr) {
     handle = open(file, O_RDWR);
 
     if (handle == -1) {
-        log_sys(cn, "°c3File not found.");
+        log_sys(cn, "\260c3File not found.");
         return;
     }
 
     len = lseek(handle, 0, SEEK_END);
     if (len != 40 + sizeof(lq_data) + sizeof(lq_npc) + sizeof(lq_door)) {
         close(handle);
-        log_sys(cn, "°c3The file appears to be a different version. Cannot load.");
+        log_sys(cn, "\260c3The file appears to be a different version. Cannot load.");
         return;
     }
     lseek(handle, 0, SEEK_SET);
@@ -1296,7 +1296,7 @@ void cmd_questload(int cn, char *ptr) {
 
     if (xpassword[0] && strcmp(xpassword, password)) {
         close(handle);
-        log_sys(cn, "°c3Cannot load file with differing password.");
+        log_sys(cn, "\260c3Cannot load file with differing password.");
         return;
     }
 
@@ -1642,11 +1642,11 @@ void cmd_nspawn(int cn, char *ptr) {
     static char *usage = "/nspawn <npcID|nick|all>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1662,7 +1662,7 @@ void cmd_nspawn(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Spawned %d NPCs.", cnt);
 }
 
@@ -1672,11 +1672,11 @@ void cmd_nremove(int cn, char *ptr) {
     static char *usage = "/nremove <npcID|nick|all>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1692,7 +1692,7 @@ void cmd_nremove(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Removed %d NPCs.", cnt);
 }
 
@@ -1712,15 +1712,15 @@ void cmd_nsay(int cn, char *ptr) {
     static char *usage = "/nsay <npcID|nick> <text:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, text, sizeof(text)))) {
-        log_sys(cn, "°c3Missing text. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing text. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1736,13 +1736,13 @@ void cmd_nsay(int cn, char *ptr) {
                 say(co, "%s", text);
                 cnt++;
                 if (cnt > 10) {
-                    log_sys(cn, "°c3Cancelled, too many NPCs.");
+                    log_sys(cn, "\260c3Cancelled, too many NPCs.");
                     break;
                 }
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
 }
 
 void cmd_nimmortal(int cn, char *ptr) {
@@ -1751,15 +1751,15 @@ void cmd_nimmortal(int cn, char *ptr) {
     static char *usage = "/nimmortal <npcID|nick> <0|1>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &onoff))) {
-        log_sys(cn, "°c3Missing 0|1. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing 0|1. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1779,7 +1779,7 @@ void cmd_nimmortal(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "Set immortal to %s on %d NPCs", onoff ? "ON" : "OFF", cnt);
 }
 
@@ -1789,15 +1789,15 @@ void cmd_nemote(int cn, char *ptr) {
     static char *usage = "/nemote <npcID|nick> <text:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, text, sizeof(text)))) {
-        log_sys(cn, "°c3Missing text. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing text. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1813,13 +1813,13 @@ void cmd_nemote(int cn, char *ptr) {
                 emote(co, "%s", text);
                 cnt++;
                 if (cnt > 10) {
-                    log_sys(cn, "°c3Cancelled, too many NPCs.");
+                    log_sys(cn, "\260c3Cancelled, too many NPCs.");
                     break;
                 }
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
 }
 
 void cmd_nattack(int cn, char *ptr) {
@@ -1828,15 +1828,15 @@ void cmd_nattack(int cn, char *ptr) {
     static char *usage = "/nattack <npcID|nick> <player:str>";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing npcID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing npcID. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, plr, sizeof(plr)))) {
-        log_sys(cn, "°c3Missing text. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing text. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1844,7 +1844,7 @@ void cmd_nattack(int cn, char *ptr) {
         if (!strcasecmp(plr, ch[co].name)) break;
     }
     if (!co) {
-        log_sys(cn, "°c3Player %s not found.", plr);
+        log_sys(cn, "\260c3Player %s not found.", plr);
         return;
     }
 
@@ -1862,7 +1862,7 @@ void cmd_nattack(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3NPC not found.");
+    if (!cnt) log_sys(cn, "\260c3NPC not found.");
     else log_sys(cn, "%d NPCs attacking.", cnt);
 }
 
@@ -1890,11 +1890,11 @@ void cmd_usurp(int cn, char *ptr) {
     struct lq_npc_data *dat;
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1933,11 +1933,11 @@ void cmd_follow(int cn, char *ptr) {
     struct lq_npc_data *dat;
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -1969,11 +1969,11 @@ void cmd_stop(int cn, char *ptr) {
     struct lq_npc_data *dat;
 
     if (!(ptr = get_str(ptr, name, sizeof(name)))) {
-        log_sys(cn, "°c3Missing name. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing name. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -2010,7 +2010,7 @@ void cmd_questreset(int cn, char *ptr) {
                 !teleport_char_driver(n, 235, 235) &&
                 !teleport_char_driver(n, 245, 240) &&
                 !teleport_char_driver(n, 240, 245) &&
-                !teleport_char_driver(n, 245, 245)) log_sys(cn, "°c3Could not remove all players, please try again soon.");
+                !teleport_char_driver(n, 245, 245)) log_sys(cn, "\260c3Could not remove all players, please try again soon.");
         }
     }
     for (n = 1; n < MAXITEM; n++) {
@@ -2024,7 +2024,7 @@ void cmd_questreset(int cn, char *ptr) {
                 !drop_item(n, 235, 235) &&
                 !drop_item(n, 245, 240) &&
                 !drop_item(n, 240, 245) &&
-                !drop_item(n, 245, 245)) log_sys(cn, "°c3Could not remove all player bodies, please try again soon.");
+                !drop_item(n, 245, 245)) log_sys(cn, "\260c3Could not remove all player bodies, please try again soon.");
             else set_expire(n, PLAYER_BODY_DECAY_TIME);
         } else if (it[n].flags & IF_TAKE) {
             remove_item_map(n);
@@ -2081,28 +2081,28 @@ void cmd_questreward(int cn, char *ptr) {
     static char *usage = "/questreward <nr:int> <amount:int> <desc:str>";
 
     if (!(ptr = get_int(ptr, &nr))) {
-        log_sys(cn, "°c3Missing nr. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing nr. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &amount))) {
-        log_sys(cn, "°c3Missing amount. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing amount. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_str(ptr, desc, sizeof(desc)))) {
-        log_sys(cn, "°c3Missing description. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing description. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     if (nr < 1 || nr >= MAXLQMARK) {
-        log_sys(cn, "°c3Nr is out of bounds (1-%d)", MAXLQMARK - 1);
+        log_sys(cn, "\260c3Nr is out of bounds (1-%d)", MAXLQMARK - 1);
         return;
     }
     if (amount < 1 || amount > 100) {
-        log_sys(cn, "°c3Amount is out of bounds. It must be in the range 1..100. (Percentage of maximum allowed reward).");
+        log_sys(cn, "\260c3Amount is out of bounds. It must be in the range 1..100. (Percentage of maximum allowed reward).");
         return;
     }
     lq_data.reward[nr] = amount;
@@ -2115,29 +2115,29 @@ void cmd_questlevel(int cn, char *ptr) {
     static char *usage = "/questlevel <min:int> <max:int>";
 
     if (!(ptr = get_int(ptr, &mini))) {
-        log_sys(cn, "°c3Missing mini. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing mini. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &maxi))) {
-        log_sys(cn, "°c3Missing maxi. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing maxi. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
     if (mini < 1 || mini > 200) {
-        log_sys(cn, "°c3Min Level is out of bounds (1 to 200).");
+        log_sys(cn, "\260c3Min Level is out of bounds (1 to 200).");
         return;
     }
     if (maxi < 1 || maxi > 200) {
-        log_sys(cn, "°c3Max Level is out of bounds (1 to 200).");
+        log_sys(cn, "\260c3Max Level is out of bounds (1 to 200).");
         return;
     }
 
     if (mini > maxi) {
-        log_sys(cn, "°c3Min Level cannot be greater than Max Level.");
+        log_sys(cn, "\260c3Min Level cannot be greater than Max Level.");
         return;
     }
 
@@ -2182,15 +2182,15 @@ void cmd_doorlock(int cn, char *ptr) {
     static char *usage = "/doorlock <doornick> <keyID:int> (keyID=0 for unlocked)";
 
     if (!(ptr = get_str(ptr, nick, sizeof(nick)))) {
-        log_sys(cn, "°c3Missing doornick. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing doornick. Usage is: %s.", usage);
         return;
     }
     if (!(ptr = get_int(ptr, &keyID))) {
-        log_sys(cn, "°c3Missing keyID. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Missing keyID. Usage is: %s.", usage);
         return;
     }
     if (ptr && check_anything(ptr)) {
-        log_sys(cn, "°c3Trailing garbage. Usage is: %s.", usage);
+        log_sys(cn, "\260c3Trailing garbage. Usage is: %s.", usage);
         return;
     }
 
@@ -2210,7 +2210,7 @@ void cmd_doorlock(int cn, char *ptr) {
             }
         }
     }
-    if (!cnt) log_sys(cn, "°c3Door not found.");
+    if (!cnt) log_sys(cn, "\260c3Door not found.");
     else log_sys(cn, "Set key for %d doors.", cnt);
 }
 
@@ -2418,7 +2418,7 @@ int special_driver(int nr, int cn, char *ptr) {
                     ptr += len;
                     while (isspace(*ptr)) ptr++;
 
-                    sprintf(buf, "%010u:%02u:%02u:°c%d%s: %s says: \"%s\"", 0, areaID, areaM, 11, "LQ", ch[co].name, ptr);
+                    sprintf(buf, "%010u:%02u:%02u:\260c%d%s: %s says: \"%s\"", 0, areaID, areaM, 11, "LQ", ch[co].name, ptr);
                     server_chat(9, buf);
 
                     return 2;

@@ -241,7 +241,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            if (!get_char_club(co) && !get_char_clan(co)) quiet_say(cn, "Hello %s! Would you like to found a °c4clan°c0?", ch[co].name);
+            if (!get_char_club(co) && !get_char_clan(co)) quiet_say(cn, "Hello %s! Would you like to found a \260c4clan\260c0?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -738,7 +738,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                     }
 
                     if (level > CS_NEUTRAL && !get_clan_raid(dat->clan)) {
-                        say(cn, "Your clan cannot go to war or feud unless you turn °c4raiding on°c0.");
+                        say(cn, "Your clan cannot go to war or feud unless you turn \260c4raiding on\260c0.");
 
                         remove_message(cn, msg);
                         continue;
@@ -980,13 +980,13 @@ void clanspawn_driver(int in, int cn) {
     cnr = get_char_clan(cn);
 
     if (cname && cnr) {
-        sprintf(buf, "0000000000°c15Clan: %s won a Jewel for %s from level %d!", ch[cn].name, cname, it[in].max_level);
+        sprintf(buf, "0000000000\260c15Clan: %s won a Jewel for %s from level %d!", ch[cn].name, cname, it[in].max_level);
         server_chat(5, buf);
 
         sprintf(buf, "%02d:X:%02d:%10u:%s", cnr, it[in].max_level, ch[cn].ID, ch[cn].name);
         server_chat(1028, buf);
     } else {
-        sprintf(buf, "0000000000°c15Clan: %s has won the spawn at level %d! Not being in a clan it didn't do %s much good, though.", ch[cn].name, it[in].max_level, himname(cn));
+        sprintf(buf, "0000000000\260c15Clan: %s has won the spawn at level %d! Not being in a clan it didn't do %s much good, though.", ch[cn].name, it[in].max_level, himname(cn));
         server_chat(5, buf);
     }
 

@@ -368,7 +368,7 @@ static void read_login(int nr) {
         show_clan_message(cn);
     } else ch[cn].flags &= ~CF_AREACHANGE;
 
-    if (areaID == 21) log_char(cn, LOG_SYSTEM, 0, "°c3You have entered the test area. You cannot die here, but you can't earn experience either.");
+    if (areaID == 21) log_char(cn, LOG_SYSTEM, 0, "\260c3You have entered the test area. You cannot die here, but you can't earn experience either.");
 
     buggy_items(cn);
     questlog_init(cn);

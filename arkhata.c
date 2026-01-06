@@ -789,7 +789,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    say(cn, "To fight my student say °c4enter°c0! (Offer valid only for level 80 and below)");
+                    say(cn, "To fight my student say \260c4enter\260c0! (Offer valid only for level 80 and below)");
                     ppd->fiona_state++;
                     didsay = 1;
                     break;
@@ -3164,7 +3164,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "Are you able to find these traitors in time? You will have three hours (Astonia time)! Say °c04Aye°c0 when you are ready!");
+                    say(cn, "Are you able to find these traitors in time? You will have three hours (Astonia time)! Say \260c04Aye\260c0 when you are ready!");
                     ppd->clerk_state++;
                     didsay = 1;
                     break;

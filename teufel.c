@@ -82,30 +82,30 @@ struct qa qa[] = {
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
-    {{"play", NULL}, "I only play for bronze chips. You can °c4bet one°c0 or °c4bet two°c0 or °c4bet five°c0 of them. Then you'll roll three dice and depending on the °c4results°c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the °c4prizes°c0?", 0},
-    {{"prizes", NULL}, "A 3 gets you a Cape of the Warrior. A 60 a Cape of the Mage. +7 if you bet one chip, +14 if you bet two, +21 if you bet all five. Want to hear °c4 more prizes°c0?", 0},
+    {{"play", NULL}, "I only play for bronze chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results\260c0 you'll win the most fantastic stuff possible!", 0},
+    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes\260c0?", 0},
+    {{"prizes", NULL}, "A 3 gets you a Cape of the Warrior. A 60 a Cape of the Mage. +7 if you bet one chip, +14 if you bet two, +21 if you bet all five. Want to hear \260c4 more prizes\260c0?", 0},
     {{"more", "prizes", NULL}, "With a 4 or a 59 you'll win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
 
-    {{"play2", NULL}, "I only play for silver chips. You can °c4bet one°c0 or °c4bet two°c0 or °c4bet five°c0 of them. Then you'll roll three dice and depending on the °c4results2°c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the °c4prizes2°c0?", 0},
-    {{"prizes2", NULL}, "A 3 gets you boots of the Warrior. A 60 boots of the Mage. +8 if you bet one chip, +15 if you bet two, +22 if you bet all five. Want to hear °c4 more prizes2°c0?", 0},
+    {{"play2", NULL}, "I only play for silver chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results2\260c0 you'll win the most fantastic stuff possible!", 0},
+    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes2\260c0?", 0},
+    {{"prizes2", NULL}, "A 3 gets you boots of the Warrior. A 60 boots of the Mage. +8 if you bet one chip, +15 if you bet two, +22 if you bet all five. Want to hear \260c4 more prizes2\260c0?", 0},
     {{"more", "prizes2", NULL}, "With a 4 or a 59 you'll win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
 
-    {{"play3", NULL}, "I only play for gold chips. You can °c4bet one°c0 or °c4bet two°c0 or °c4bet five°c0 of them. Then you'll roll three dice and depending on the °c4results3°c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the °c4prizes3°c0?", 0},
-    {{"prizes3", NULL}, "A 3 gets you a helmet of the Warrior. A 60 a hat of the Mage. +9 if you bet one chip, +16 if you bet two, +23 if you bet all five. Want to hear °c4 more prizes3°c0?", 0},
+    {{"play3", NULL}, "I only play for gold chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results3\260c0 you'll win the most fantastic stuff possible!", 0},
+    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes3\260c0?", 0},
+    {{"prizes3", NULL}, "A 3 gets you a helmet of the Warrior. A 60 a hat of the Mage. +9 if you bet one chip, +16 if you bet two, +23 if you bet all five. Want to hear \260c4 more prizes3\260c0?", 0},
     {{"more", "prizes3", NULL}, "With a 4 or a 59 you'll win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"bet", "one", NULL}, NULL, 2},
     {{"bet", "two", NULL}, NULL, 3},
     {{"bet", "five", NULL}, NULL, 4},
 
-    {{"repeat", NULL}, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice °c4reward°c0 for killing some rats.", 0},
-    {{"reward", NULL}, "Yeah. You go kill some rats. The more and bigger the rats you kill, the more points you get in my book. The more points you have, the better the rewards you get. You know, °c4experience°c0, °c4military°c0 knowledge or just plain °c4money°c0 if that's what you want.", 0},
-    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-don't-touch-it kind of experience. °c4Give experience°c0 will exchange your points for experience.", 0},
-    {{"military", NULL}, "That's right. Everything your drill sergeant told you and you can't remember. °c4Give military°c0 will exchange your points for military knowledge.", 0},
-    {{"money", NULL}, "You know, them greenbacks. Oh, wait. Wrong dimension. Money... Ah, right. Round, flat and shiny... Coins! That's it. °c4Give money°c0 will exchange your points for greenbacks. Err, gold coins.", 0},
+    {{"repeat", NULL}, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice \260c4reward\260c0 for killing some rats.", 0},
+    {{"reward", NULL}, "Yeah. You go kill some rats. The more and bigger the rats you kill, the more points you get in my book. The more points you have, the better the rewards you get. You know, \260c4experience\260c0, \260c4military\260c0 knowledge or just plain \260c4money\260c0 if that's what you want.", 0},
+    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-don't-touch-it kind of experience. \260c4Give experience\260c0 will exchange your points for experience.", 0},
+    {{"military", NULL}, "That's right. Everything your drill sergeant told you and you can't remember. \260c4Give military\260c0 will exchange your points for military knowledge.", 0},
+    {{"money", NULL}, "You know, them greenbacks. Oh, wait. Wrong dimension. Money... Ah, right. Round, flat and shiny... Coins! That's it. \260c4Give money\260c0 will exchange your points for greenbacks. Err, gold coins.", 0},
 
     {{"give", "experience", NULL}, NULL, 5},
     {{"give", "military", NULL}, NULL, 6},
@@ -954,21 +954,21 @@ void teufelgambler_driver(int cn, int ret, int lastact) {
 
             if (dat->nr == 1) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna °c4play°c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, °c4play°c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 2) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna °c4play2°c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play2\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, °c4play2°c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play2\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 3) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna °c4play3°c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play3\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, °c4play3°c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play3\260c0 with me!", ch[co].name);
                 }
             }
 
@@ -1156,7 +1156,7 @@ void teufelquest_driver(int cn, int ret, int lastact) {
             if (!is_demon(co)) {
                 say(cn, "Ah human? AAAAAHHHHHHHHHH! HELP!");
             } else {
-                say(cn, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice °c4reward°c0 for killing some rats.", ch[co].name);
+                say(cn, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice \260c4reward\260c0 for killing some rats.", ch[co].name);
             }
 
             talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);

@@ -173,7 +173,7 @@ static int cmd_complain(int cn, char *ptr) {
     }
 
     if (!ppd->complaint_date) {
-        log_char(cn, LOG_SYSTEM, 0, "°c3Complaints are meant as a way to complain about verbal attacks by another player, or to report a scam. If you wish to complain about something else, please email game@astonia.com. No complaint has been sent. Repeat the command if you still want to send your complaint.");
+        log_char(cn, LOG_SYSTEM, 0, "\260c3Complaints are meant as a way to complain about verbal attacks by another player, or to report a scam. If you wish to complain about something else, please email game@astonia.com. No complaint has been sent. Repeat the command if you still want to send your complaint.");
         ppd->complaint_date = 1;
         return 1;
     }
@@ -258,7 +258,7 @@ static int cmd_punish(int cn, char *ptr) { // 1=OK, 0=repeat
     sprintf(buf, "Punishment note from %s, %s punished with level %d for %s", ch[cn].staff_code, name, level, reason);
     write_scrollback(ch[cn].player, cn, buf, ch[cn].name, name);
 
-    sprintf(buf, "0000000000°c03Punishment: %s (%s) scheduled punishment for %s, level %d, reason: %s.", ch[cn].name, ch[cn].staff_code, name, level, reason);
+    sprintf(buf, "0000000000\260c03Punishment: %s (%s) scheduled punishment for %s, level %d, reason: %s.", ch[cn].name, ch[cn].staff_code, name, level, reason);
     server_chat(31, buf);
 
     return 1;
@@ -294,7 +294,7 @@ static int cmd_shutup(int cn, char *ptr) { // 1=OK, 0=repeat
 
     write_scrollback(ch[cn].player, cn, buf, ch[cn].name, name);
 
-    sprintf(buf, "0000000000°c03Shutup: %s (%s) scheduled shutup for %s, %d minutes.", ch[cn].name, ch[cn].staff_code, name, minutes);
+    sprintf(buf, "0000000000\260c03Shutup: %s (%s) scheduled shutup for %s, %d minutes.", ch[cn].name, ch[cn].staff_code, name, minutes);
     server_chat(31, buf);
 
     return 1;
@@ -384,7 +384,7 @@ static int cmd_exterminate(int cn, char *ptr) {
     exterminate(ch[cn].ID, name, ch[cn].staff_code);
     xlog("exterminate: %s by %s", name, ch[cn].name);
 
-    sprintf(buf, "0000000000°c03Exterminate: %s (%s) scheduled exterminate for %s.", ch[cn].name, ch[cn].staff_code, name);
+    sprintf(buf, "0000000000\260c03Exterminate: %s (%s) scheduled exterminate for %s.", ch[cn].name, ch[cn].staff_code, name);
     server_chat(31, buf);
 
     return 1;
@@ -491,7 +491,7 @@ static int cmd_tell(int cn, char *ptr) {
 
     register_sent_tell(cn, uID);
 
-    tell_chat(ch[cn].ID, uID, (ch[cn].flags & (CF_STAFF | CF_GOD)) ? 1 : 0, "°c17%s°c18%s%s%s (%d) tells you: \"%s\"",
+    tell_chat(ch[cn].ID, uID, (ch[cn].flags & (CF_STAFF | CF_GOD)) ? 1 : 0, "\260c17%s\260c18%s%s%s (%d) tells you: \"%s\"",
               sname,
               (ch[cn].flags & CF_STAFF) ? " [" : "",
               (ch[cn].flags & CF_STAFF) ? ch[cn].staff_code : "",
@@ -1617,7 +1617,7 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
         } else {
             if (ch[cn].level < 10) log_char(cn, LOG_SYSTEM, 0, "Sorry, you may not become a player killer before reaching level 10.");
             else if (!(ch[cn].flags & CF_PAID)) log_char(cn, LOG_SYSTEM, 0, "Sorry, only paying players may become player killers.");
-            else log_char(cn, LOG_SYSTEM, 0, "°c3Please take a moment to consider this decision. If another player kills you, he will be able to take all your belongings, or kill you over and over again. Do you really want this? Type: '/iwilldie %d' to confirm.", ch[cn].ID);
+            else log_char(cn, LOG_SYSTEM, 0, "\260c3Please take a moment to consider this decision. If another player kills you, he will be able to take all your belongings, or kill you over and over again. Do you really want this? Type: '/iwilldie %d' to confirm.", ch[cn].ID);
         }
 
         log_char(cn, LOG_SYSTEM, 0, "PK is %s.", (ch[cn].flags & CF_PK) ? "on" : "off");

@@ -1403,7 +1403,7 @@ void dungeonmaster(int cn, int ret, int lastact) {
                 continue;
             }
 
-            say(cn, "Hello %s! Welcome to the clan catacombs. Be warned, there is a fee of 3500 gold for attacking now. Say °c4help°c0 for details.", ch[co].name);
+            say(cn, "Hello %s! Welcome to the clan catacombs. Be warned, there is a fee of 3500 gold for attacking now. Say \260c4help\260c0 for details.", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 

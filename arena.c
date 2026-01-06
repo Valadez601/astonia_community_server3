@@ -275,7 +275,7 @@ void find_contender(int cn, struct master_data *dat) {
         dat->fight2_cn = dat->ct[fight2].cn;
         dat->timeout = ticker + TICKS * 30;
 
-        say(cn, "Next fight is: °c6%s versus %s.°c0 Both participants please step forward and say: 'enter'. You have 30 seconds to enter the arena, otherwise you lose by default.",
+        say(cn, "Next fight is: \260c6%s versus %s.\260c0 Both participants please step forward and say: 'enter'. You have 30 seconds to enter the arena, otherwise you lose by default.",
             ch[dat->fight1_cn].name,
             ch[dat->fight2_cn].name);
 

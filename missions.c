@@ -506,11 +506,11 @@ void offer_mission_sub(int cn, int co, int idx, struct mission_ppd *ppd) {
     static char *missname[3] = {"Alpha", "Beta", "Gamma"};
 
     log_char(co, LOG_SYSTEM, 0, " ");
-    log_char(co, LOG_SYSTEM, 0, "°c2Job %s \006%s \020%s \024Difficulty %d°c0", missname[idx], mdtab[ppd->sm[idx].mdidx]->title, misstypetext[ppd->sm[idx].type], ppd->sm[idx].difficulty);
+    log_char(co, LOG_SYSTEM, 0, "\260c2Job %s \006%s \020%s \024Difficulty %d\260c0", missname[idx], mdtab[ppd->sm[idx].mdidx]->title, misstypetext[ppd->sm[idx].type], ppd->sm[idx].difficulty);
     log_char(co, LOG_SYSTEM, 0, " ");
     log_char(co, LOG_SYSTEM, 0, "%s", mdtab[ppd->sm[idx].mdidx]->description);
     log_char(co, LOG_SYSTEM, 0, " ");
-    log_char(co, LOG_SYSTEM, 0, "Do you °c4accept Job %s°c0? Accepting the job will teleport you to the job area immediately. Or do you want to look at °c4Job %s°c0 or °c4Job %s°c0 instead?",
+    log_char(co, LOG_SYSTEM, 0, "Do you \260c4accept Job %s\260c0? Accepting the job will teleport you to the job area immediately. Or do you want to look at \260c4Job %s\260c0 or \260c4Job %s\260c0 instead?",
              missname[idx], idx == 0 ? missname[1] : missname[0], idx == 2 ? missname[1] : missname[2]);
 }
 
@@ -533,7 +533,7 @@ void offer_mission(int cn, int co, struct mission_ppd *ppd) {
                 break;
             }
         }
-        log_char(co, LOG_SYSTEM, 0, "°c4Job %s°c0 \006%s \020%s \024Difficulty %d", missname[n], mdtab[ppd->sm[n].mdidx]->title, misstypetext[ppd->sm[n].type], ppd->sm[n].difficulty);
+        log_char(co, LOG_SYSTEM, 0, "\260c4Job %s\260c0 \006%s \020%s \024Difficulty %d", missname[n], mdtab[ppd->sm[n].mdidx]->title, misstypetext[ppd->sm[n].type], ppd->sm[n].difficulty);
     }
 }
 
@@ -961,9 +961,9 @@ void mission_reward_list(int cn, int co, struct mission_ppd *ppd) {
     last = min(n + 3, sizeof(mis_rew) / sizeof(mis_rew[0]));
     first = max(0, last - 5);
 
-    log_char(co, LOG_SYSTEM, 0, "°c2Code \007Cost \012Description");
+    log_char(co, LOG_SYSTEM, 0, "\260c2Code \007Cost \012Description");
     for (n = first; n < last; n++) {
-        log_char(co, LOG_SYSTEM, 0, "°c4show %s°c0 \010%d \012%s", mis_rew[n].code, mis_rew[n].value, mis_rew[n].desc);
+        log_char(co, LOG_SYSTEM, 0, "\260c4show %s\260c0 \010%d \012%s", mis_rew[n].code, mis_rew[n].value, mis_rew[n].desc);
     }
     log_char(co, LOG_SYSTEM, 0, "You have: \010%d \012points.", ppd->points);
     log_char(co, LOG_SYSTEM, 0, "You'll get a more detailed description of the offer when you choose it.");
@@ -1010,7 +1010,7 @@ void mission_give_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
         ppd->statowed++;
         ppd->statcnt = 0;
         ppd->stat[0] = ppd->stat[1] = ppd->stat[2] = 0;
-        quiet_say(cn, "One custom stat potion coming up. Do you want it to hold °c4one skill°c0 or °c4two skills°c0 or °c4three skills°c0?");
+        quiet_say(cn, "One custom stat potion coming up. Do you want it to hold \260c4one skill\260c0 or \260c4two skills\260c0 or \260c4three skills\260c0?");
         dlog(co, 0, "took %s from mission offer for %d points (new total %d points)", mis_rew[nr].itmtmp, mis_rew[nr].value, ppd->points);
         return;
     } else {
@@ -1067,7 +1067,7 @@ void mission_show_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
         destroy_item(in);
     }
 
-    quiet_say(cn, "This could be yours for %d points (you have %d points). Say °c4ibuy %s°c0 to buy it.", mis_rew[nr].value, ppd->points, mis_rew[nr].code);
+    quiet_say(cn, "This could be yours for %d points (you have %d points). Say \260c4ibuy %s\260c0 to buy it.", mis_rew[nr].value, ppd->points, mis_rew[nr].code);
 }
 
 struct mission_giver_data {
@@ -1232,7 +1232,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         ppd->sm[1].type = 0;
                         ppd->sm[2].type = 0;
 
-                        quiet_say(cn, "Congratulations on doing a good job, %s. You earned %d brownie points in my book, for a total of %d points. Feel free to ask me for an °c4offer°c0 anytime. You can also ask me to °c4increase°c0 or °c4decrease°c0 the difficulty of your jobs (this must be done before asking for a new job, otherwise you'll be changing the difficulty of the following job offer, not the current one; multiple commands will stack). Or do you want a °c4new job°c0?", ch[co].name, pts, ppd->points);
+                        quiet_say(cn, "Congratulations on doing a good job, %s. You earned %d brownie points in my book, for a total of %d points. Feel free to ask me for an \260c4offer\260c0 anytime. You can also ask me to \260c4increase\260c0 or \260c4decrease\260c0 the difficulty of your jobs (this must be done before asking for a new job, otherwise you'll be changing the difficulty of the following job offer, not the current one; multiple commands will stack). Or do you want a \260c4new job\260c0?", ch[co].name, pts, ppd->points);
                         log_char(co, LOG_SYSTEM, 0, "#30");
                         log_char(co, LOG_SYSTEM, 0, "#40");
                         log_char(co, LOG_SYSTEM, 0, "#50");
@@ -1244,7 +1244,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         ppd->missiongive_state = 2;
                         didsay = 1;
                     } else if (ppd->active) {
-                        quiet_say(cn, "You still have a job. Do you want to °c4fail°c0 it?");
+                        quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
                         ppd->missiongive_state = 2;
                         didsay = 1;
                     } else {
@@ -1289,15 +1289,15 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 4:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 0, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to °c4fail°c0 it?");
+                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
                     break;
                 case 5:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 1, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to °c4fail°c0 it?");
+                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
                     break;
                 case 6:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 2, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to °c4fail°c0 it?");
+                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
                     break;
                 case 7:
                     if (ppd->sm[0].type && !ppd->active && !ppd->solved) start_mission(cn, co, 0, ppd);
@@ -1338,7 +1338,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 11:
                     mission_reward_list(cn, co, ppd);
-                    quiet_say(cn, "I also have a °c4special offer°c0, for %d points.", dat->spec_cost);
+                    quiet_say(cn, "I also have a \260c4special offer\260c0, for %d points.", dat->spec_cost);
                     break;
                 case 12:
                     ppd->dif_kill = min(MAXDIFF, ppd->dif_kill + 10);
@@ -1378,7 +1378,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                 case 18:
                     look_item(co, it + ch[cn].item[30]);
                     log_char(co, LOG_SYSTEM, 0, "Price: %d points (you have %d points)", dat->spec_cost, ppd->points);
-                    log_char(co, LOG_SYSTEM, 0, "Do you want to °c4buy the special offer°c0 (offer guaranteed for 5 minutes, unless someone else buys it; might change anytime after that)?");
+                    log_char(co, LOG_SYSTEM, 0, "Do you want to \260c4buy the special offer\260c0 (offer guaranteed for 5 minutes, unless someone else buys it; might change anytime after that)?");
                     dat->next_spec = max(dat->next_spec, ticker + TICKS * 60 * 5);
                     break;
                 case 19:
@@ -1402,7 +1402,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         break;
                     }
                     ppd->statcnt = 1;
-                    quiet_say(cn, "Alright, a one-stat potion it will be. Please name the skill you'd like to have (ie. °c4attack skill°c0, °c4immunity skill°c0 etc.).");
+                    quiet_say(cn, "Alright, a one-stat potion it will be. Please name the skill you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.).");
                     break;
                 case 21:
                     if (ppd->statowed < 1) {
@@ -1410,7 +1410,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         break;
                     }
                     ppd->statcnt = 2;
-                    quiet_say(cn, "Alright, a two-stat potion it will be. Please name the skills you'd like to have (ie. °c4attack skill°c0, °c4immunity skill°c0 etc.), one skill per line.");
+                    quiet_say(cn, "Alright, a two-stat potion it will be. Please name the skills you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
                     break;
                 case 22:
                     if (ppd->statowed < 1) {
@@ -1418,7 +1418,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         break;
                     }
                     ppd->statcnt = 3;
-                    quiet_say(cn, "Alright, a three-stat potion it will be. Please name the skills you'd like to have (ie. °c4attack skill°c0, °c4immunity skill°c0 etc.), one skill per line.");
+                    quiet_say(cn, "Alright, a three-stat potion it will be. Please name the skills you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
                     break;
                 default:
                     if (didsay >= 2000) mission_give_reward(cn, co, didsay - 2000, ppd);

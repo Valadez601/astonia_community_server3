@@ -254,7 +254,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     break;
                 case 5:
                     if (realtime - ppd->gwendy_seen_timer > 60) {
-                        quiet_say(cn, "Be greeted, %s! Didst thou find anything magical in the skeleton's ruin? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Be greeted, %s! Didst thou find anything magical in the skeleton's ruin? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TUTORIAL, 1, co);
                         didsay = 1;
                     }
@@ -281,7 +281,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     break;
                 case 9:
                     if (realtime - ppd->gwendy_seen_timer > 60) {
-                        quiet_say(cn, "Be greeted, %s! Didst thou find anything magical in the other skeleton place? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Be greeted, %s! Didst thou find anything magical in the other skeleton place? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -302,7 +302,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     break;
                 case 12:
                     if (realtime - ppd->gwendy_seen_timer > 60) {
-                        quiet_say(cn, "Ah, %s! Didst thou find the skull? It really is of the utmost importance. Or dost thou want me to °c4repeat°c0  mine offer?", ch[co].name);
+                        quiet_say(cn, "Ah, %s! Didst thou find the skull? It really is of the utmost importance. Or dost thou want me to \260c4repeat\260c0  mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -328,7 +328,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     break;
                 case 16:
                     if (realtime - ppd->gwendy_seen_timer > 60) {
-                        quiet_say(cn, "Ah, %s! I am most concerned. Didst thou find anything? Or dost thou want me to °c4repeat°c0  what I said about it?", ch[co].name);
+                        quiet_say(cn, "Ah, %s! I am most concerned. Didst thou find anything? Or dost thou want me to \260c4repeat\260c0  what I said about it?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -608,7 +608,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
                     break;
                 case 4:
                     if (realtime - ppd->yoakin_seen_timer > 60) {
-                        quiet_say(cn, "Hail, %s! Didst thou find that big bear? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Hail, %s! Didst thou find that big bear? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -1032,7 +1032,7 @@ void james_driver(int cn, int ret, int lastact) {
                 }
                 switch (ppd->james_state) {
                 case 0:
-                    if ((ch[co].flags & CF_PAID) && ch[co].exp == 0 && !(ch[co].flags & CF_HARDCORE)) quiet_say(cn, "°c3Hello, %s. Dost thou wish to become a °c4Hardcore°c3 character?", ch[co].name);
+                    if ((ch[co].flags & CF_PAID) && ch[co].exp == 0 && !(ch[co].flags & CF_HARDCORE)) quiet_say(cn, "\260c3Hello, %s. Dost thou wish to become a \260c4Hardcore\260c3 character?", ch[co].name);
                     if (ppd->lydia_state >= 6) {
                         ppd->james_state = 3;
                         break;
@@ -1059,7 +1059,7 @@ void james_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "If you ever need °c4advice°c0 on how to raise your character, I'd be happy to help you - for a small fee.");
+                    quiet_say(cn, "If you ever need \260c4advice\260c0 on how to raise your character, I'd be happy to help you - for a small fee.");
                     ppd->james_state++;
                     didsay = 1;
                     break;
@@ -1095,7 +1095,7 @@ void james_driver(int cn, int ret, int lastact) {
                 break;
             case 3:
                 if (ch[co].level > 70) quiet_say(cn, "I'm afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
-                else quiet_say(cn, "I'll help thee for the small fee of %.2fG, %s. Say °c4buy advice°c0 if thou wantst it.", ch[co].level * ch[co].level * ch[co].level / 100.0, ch[co].name);
+                else quiet_say(cn, "I'll help thee for the small fee of %.2fG, %s. Say \260c4buy advice\260c0 if thou wantst it.", ch[co].level * ch[co].level * ch[co].level / 100.0, ch[co].name);
                 break;
             case 4:
                 if (ch[co].level > 70) quiet_say(cn, "I'm afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
@@ -1122,7 +1122,7 @@ void james_driver(int cn, int ret, int lastact) {
             case 11:
                 quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he levels, and he loses a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
                 quiet_say(cn, "Since death is a lot harder on hardcore characters, thou must be aware that the gods (game management) will ignore any complaints about deaths caused by lag, other players luring monsters to thee or other reasons which are not entirely fair, but not real bugs either.");
-                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods wilt not help thee. Dost thou accept these rules? [ °c4I accept the rules and wish to become a hardcore character°c0 ]");
+                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods wilt not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
                 break;
             case 12:
                 if (!(ch[co].flags & CF_PAID)) {
@@ -1499,7 +1499,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                     break;
                 case 4:
                     if (realtime - ppd->lydia_seen_timer > 60) {
-                        quiet_say(cn, "Hello again, %s! Didst thou find the potion? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Hello again, %s! Didst thou find the potion? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                         notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TUTORIAL, 0, co);
                     }
@@ -1983,7 +1983,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                     break;
                 case 3:
                     if (realtime - ppd->reskin_seen_timer > 600) {
-                        quiet_say(cn, "Hello again, %s! Didst thou find any new ingredients? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Hello again, %s! Didst thou find any new ingredients? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     } else if (ppd->logain_state > 8) ppd->reskin_state++;
                     break;
@@ -2366,7 +2366,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     break;
                 case 5:
                     if (realtime - ppd->guiwynn_seen_timer > 60) {
-                        quiet_say(cn, "Be greeted, %s! Didst thou find out anything about the Order? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Be greeted, %s! Didst thou find out anything about the Order? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -2393,7 +2393,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     break;
                 case 8:
                     if (realtime - ppd->guiwynn_seen_timer > 60) {
-                        quiet_say(cn, "Be greeted, %s! Didst thou find the recipe? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Be greeted, %s! Didst thou find the recipe? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -2664,7 +2664,7 @@ void logain_driver(int cn, int ret, int lastact) {
                     break;
                 case 5:
                     if (realtime - ppd->logain_seen_timer > 60) {
-                        quiet_say(cn, "Hail thee, %s! Couldst thou find out who is responsible? Or dost thou want me to °c4repeat°c0 mine offer?", ch[co].name);
+                        quiet_say(cn, "Hail thee, %s! Couldst thou find out who is responsible? Or dost thou want me to \260c4repeat\260c0 mine offer?", ch[co].name);
                         didsay = 1;
                     }
                     break;

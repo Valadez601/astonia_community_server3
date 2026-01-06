@@ -182,7 +182,7 @@ static void rec_chat(unsigned short channel, char *text) {
             if (ch[n].ID != cnID) continue;
             if (channel != 1030 && (ch[n].flags & CF_NOTELL)) continue;
             if (channel != 1030 && ignoring(n, coID)) continue;
-            ret = log_char(n, LOG_SYSTEM, 0, "°c6%s", text + 22);
+            ret = log_char(n, LOG_SYSTEM, 0, "\260c6%s", text + 22);
             if (ret && coID) { // server sends messages with ID 0 and does not need a received note
                 sprintf(buf, "%010u:%010u", coID, cnID);
                 server_chat(1029, buf);
@@ -540,11 +540,11 @@ static int write_chat(int cn, int channel, char *text) {
         break;
     }
 
-    if (channel == 0) sprintf(buf, "°c%d%s", col, text); // announce
-    else if (channel == 7 || channel == 12) sprintf(buf, "%010u:%02u:°c%d%s: °c17%s°c18 (%d) says: \"%s\"", xID, get_char_clan(cn), col, cname[channel].name, name, ch[cn].mirror, text); // clan internal
-    else if (channel == 13) sprintf(buf, "%010u:%02u:°c%d%s: °c17%s°c18 (%d) says: \"%s\"", xID, get_char_club(cn), col, cname[channel].name, name, ch[cn].mirror, text); // club internal
+    if (channel == 0) sprintf(buf, "\260c%d%s", col, text); // announce
+    else if (channel == 7 || channel == 12) sprintf(buf, "%010u:%02u:\260c%d%s: \260c17%s\260c18 (%d) says: \"%s\"", xID, get_char_clan(cn), col, cname[channel].name, name, ch[cn].mirror, text); // clan internal
+    else if (channel == 13) sprintf(buf, "%010u:%02u:\260c%d%s: \260c17%s\260c18 (%d) says: \"%s\"", xID, get_char_club(cn), col, cname[channel].name, name, ch[cn].mirror, text); // club internal
     else if (channel == 8) {
-        sprintf(buf, "%010u:%02u:°c%d%s: °c17%s°c18%s%s%s (%d) says: \"%s\"",
+        sprintf(buf, "%010u:%02u:\260c%d%s: \260c17%s\260c18%s%s%s (%d) says: \"%s\"",
                 xID,
                 areaID,
                 col,
@@ -556,7 +556,7 @@ static int write_chat(int cn, int channel, char *text) {
                 ch[cn].mirror,
                 text); // area internal
     } else if (channel == 9) {
-        sprintf(buf, "%010u:%02u:%02u:°c%d%s: °c17%s°c18%s%s%s (%d) says: \"%s\"",
+        sprintf(buf, "%010u:%02u:%02u:\260c%d%s: \260c17%s\260c18%s%s%s (%d) says: \"%s\"",
                 xID,
                 areaID,
                 areaM,
@@ -569,7 +569,7 @@ static int write_chat(int cn, int channel, char *text) {
                 ch[cn].mirror,
                 text); // mirror internal
     } else if (channel == 4) {
-        sprintf(buf, "%010u°c%d%s: °c17%s°c18%s%s%s (%s) says: \"%s\"",
+        sprintf(buf, "%010u\260c%d%s: \260c17%s\260c18%s%s%s (%s) says: \"%s\"",
                 xID,
                 col,
                 cname[channel].name,
@@ -580,7 +580,7 @@ static int write_chat(int cn, int channel, char *text) {
                 "OW",
                 text); // normal
     } else {
-        sprintf(buf, "%010u°c%d%s: °c17%s°c18%s%s%s (%d) says: \"%s\"",
+        sprintf(buf, "%010u\260c%d%s: \260c17%s\260c18%s%s%s (%d) says: \"%s\"",
                 xID,
                 col,
                 cname[channel].name,

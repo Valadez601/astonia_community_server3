@@ -2898,7 +2898,7 @@ void trader_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            quiet_say(cn, "Hello %s! I will work as middleman in any deal you might wish to make with another player. With my °c4help°c0, no one will cheat you. ", ch[co].name);
+            quiet_say(cn, "Hello %s! I will work as middleman in any deal you might wish to make with another player. With my \260c4help\260c0, no one will cheat you. ", ch[co].name);
             talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
             mem_add_driver(cn, co, 7);
         }
@@ -2958,7 +2958,7 @@ void trader_driver(int cn, int ret, int lastact) {
                 dat->c1ID = ch[co].ID;
                 dat->c2ID = ch[c2].ID;
                 dat->timeout = ticker + TICKS * 60 * 3;
-                quiet_say(cn, "I will handle a trade between %s and %s. You have three minutes to complete it. When you are satisfied with the deal, say °c4accept trade°c0. If you wish to stop the deal, say °c4stop trade°c0. You can check the deal with °c4show trade°c0.", ch[co].name, ch[c2].name);
+                quiet_say(cn, "I will handle a trade between %s and %s. You have three minutes to complete it. When you are satisfied with the deal, say \260c4accept trade\260c0. If you wish to stop the deal, say \260c4stop trade\260c0. You can check the deal with \260c4show trade\260c0.", ch[co].name, ch[c2].name);
                 talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
             }
 
@@ -3070,7 +3070,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     it[ch[cn].citem].flags |= IF_VOID;
                     c2 = find_char_byID(dat->c2ID);
                     if (c2) {
-                        log_char(c2, LOG_SYSTEM, 0, "°c2%s gave me:", ch[co].name);
+                        log_char(c2, LOG_SYSTEM, 0, "\260c2%s gave me:", ch[co].name);
                         look_item(c2, it + ch[cn].citem);
                     }
                     ch[cn].citem = 0;
@@ -3088,7 +3088,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     it[ch[cn].citem].flags |= IF_VOID;
                     c2 = find_char_byID(dat->c1ID);
                     if (c2) {
-                        log_char(c2, LOG_SYSTEM, 0, "°c2%s gave me:", ch[co].name);
+                        log_char(c2, LOG_SYSTEM, 0, "\260c2%s gave me:", ch[co].name);
                         look_item(c2, it + ch[cn].citem);
                     }
                     ch[cn].citem = 0;

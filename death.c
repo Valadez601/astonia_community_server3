@@ -197,7 +197,7 @@ void check_military_solve(int cn, int co) {
                         if (ppd->mis[nr].opt1 < 10 ||
                             (ppd->mis[nr].opt1 < 100 && ppd->mis[nr].opt1 % 5 == 0) ||
                             (ppd->mis[nr].opt1 % 10 == 0)) {
-                            log_char(cn, LOG_SYSTEM, 0, "°c1Mission kill, %d to go.", ppd->mis[nr].opt1);
+                            log_char(cn, LOG_SYSTEM, 0, "\260c1Mission kill, %d to go.", ppd->mis[nr].opt1);
                         }
                     } else {
                         log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
@@ -214,7 +214,7 @@ void check_military_solve(int cn, int co) {
                         if (ppd->mis[nr].opt1 < 10 ||
                             (ppd->mis[nr].opt1 < 100 && ppd->mis[nr].opt1 % 5 == 0) ||
                             (ppd->mis[nr].opt1 % 10 == 0)) {
-                            log_char(cn, LOG_SYSTEM, 0, "°c1Mission kill, %d to go.", ppd->mis[nr].opt1);
+                            log_char(cn, LOG_SYSTEM, 0, "\260c1Mission kill, %d to go.", ppd->mis[nr].opt1);
                         }
                     } else {
                         log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
