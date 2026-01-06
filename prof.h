@@ -12,15 +12,14 @@ Added RCS tags
 
 */
 
-struct prof
-{
-	char *name;
-	
-	char base;	// start value
-	char max;	// maximum value
-	char step;	// raised in steps
+struct prof {
+    char *name;
+
+    char base; // start value
+    char max; // maximum value
+    char step; // raised in steps
 };
 extern struct prof prof[P_MAX];
 int free_prof_points(int co);
-int show_prof_info(int cn,int co,char *buf);
+int show_prof_info(int cn, int co, char *buf);
 void cmd_steal(int cn);

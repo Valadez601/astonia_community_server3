@@ -19,15 +19,15 @@
 #include "mem.h"
 #include "timer.h"
 
-static struct timer *free_t=NULL,*next_t=NULL;
+static struct timer *free_t = NULL, *next_t = NULL;
 
-#define TIMER_CNT	4096
+#define TIMER_CNT 4096
 
 int used_timers;
 
 static inline void free_timer(struct timer *t) {
-    t->next=free_t;
-    free_t=t;
+    t->next = free_t;
+    free_t = t;
     //xfree(t);
 
     used_timers--;
@@ -37,41 +37,41 @@ static inline void free_timer(struct timer *t) {
 // DLL functions MUST NOT use timers directly as function addresses
 // might change over reloads!
 // never add a new timer with ticker==due from a timer-called function!
-int set_timer(int due,void (*func)(int,int,int,int,int),int dat1,int dat2,int dat3,int dat4,int dat5) {
-    struct timer *t,*last=NULL,*f;
+int set_timer(int due, void (*func)(int, int, int, int, int), int dat1, int dat2, int dat3, int dat4, int dat5) {
+    struct timer *t, *last = NULL, *f;
 
     // get free timer
-    f=free_t;
+    f = free_t;
     if (!f) {
         int n;
 
-        f=xcalloc(sizeof(struct timer)*TIMER_CNT,IM_TIMER);
-        for (n=1; n<TIMER_CNT-1; n++) {
-            f[n].next=f+n+1;
+        f = xcalloc(sizeof(struct timer) * TIMER_CNT, IM_TIMER);
+        for (n = 1; n < TIMER_CNT - 1; n++) {
+            f[n].next = f + n + 1;
         }
-        free_t=f+1;
-    } else free_t=f->next;
+        free_t = f + 1;
+    } else free_t = f->next;
 
     // find position in list
-    for (t=next_t; t && t->due<due; t=t->next) last=t;
+    for (t = next_t; t && t->due < due; t = t->next) last = t;
 
     // insert new timer into list
     if (last) {
-        f->next=last->next;
-        last->next=f;
+        f->next = last->next;
+        last->next = f;
     } else {
-        f->next=next_t;
-        next_t=f;
+        f->next = next_t;
+        next_t = f;
     }
 
     // set timer parameters
-    f->due=due;
-    f->func=func;
-    f->dat1=dat1;
-    f->dat2=dat2;
-    f->dat3=dat3;
-    f->dat4=dat4;
-    f->dat5=dat5;
+    f->due = due;
+    f->func = func;
+    f->dat1 = dat1;
+    f->dat2 = dat2;
+    f->dat3 = dat3;
+    f->dat4 = dat4;
+    f->dat5 = dat5;
 
     used_timers++;
 
@@ -80,27 +80,27 @@ int set_timer(int due,void (*func)(int,int,int,int,int),int dat1,int dat2,int da
 
 // called once per tick. fires due timers.
 void tick_timer(void) {
-    struct timer *t,*last=NULL;
+    struct timer *t, *last = NULL;
 
-    for (t=next_t; t && t->due<=ticker; t=t->next) {
-        last=t;
-        t->func(t->dat1,t->dat2,t->dat3,t->dat4,t->dat5);
+    for (t = next_t; t && t->due <= ticker; t = t->next) {
+        last = t;
+        t->func(t->dat1, t->dat2, t->dat3, t->dat4, t->dat5);
         used_timers--;
     }
 
     // add executed timers to free list
     if (last) {
-        last->next=free_t;
-        free_t=next_t;
+        last->next = free_t;
+        free_t = next_t;
     }
 
     // make first not-executed timer start of used timer list
-    next_t=t;
+    next_t = t;
 }
 
 // initialise timer lists
 int init_timer(void) {
-    used_timers=0;
+    used_timers = 0;
 
     //set_timer(ticker+TICKS*10,display_queue,TICKS*10,0,0,0,0);
 

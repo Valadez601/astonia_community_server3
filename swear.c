@@ -27,142 +27,120 @@ struct swear_ppd {
 };
 
 int all_upper(char *ptr) {
-    int cnt=0;
+    int cnt = 0;
 
     while (*ptr) {
-        if (toupper(*ptr)!=*ptr) return 0;
+        if (toupper(*ptr) != *ptr) return 0;
         if (isalpha(*ptr)) cnt++;
         ptr++;
     }
-    if (cnt>3) return 1;
+    if (cnt > 3) return 1;
 
     return 0;
 }
 
-int swearing(int cn,char *text) {
+int swearing(int cn, char *text) {
     struct swear_ppd *ppd;
-    int n,flag;
+    int n, flag;
 
-    if (!(ch[cn].flags&CF_PLAYER)) return 0;
+    if (!(ch[cn].flags & CF_PLAYER)) return 0;
 
-    ppd=set_data(cn,DRD_SWEAR_PPD,sizeof(struct swear_ppd));
+    ppd = set_data(cn, DRD_SWEAR_PPD, sizeof(struct swear_ppd));
     if (!ppd) return 0; // oops...
 
-    if (ppd->banned_till>realtime) {
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat is blocked for %.2f minutes.",(ppd->banned_till-realtime)/60.0);
+    if (ppd->banned_till > realtime) {
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat is blocked for %.2f minutes.", (ppd->banned_till - realtime) / 60.0);
         return 1;
     }
 
-    if (ch[cn].flags&CF_GOD) return 0;
+    if (ch[cn].flags & CF_GOD) return 0;
 
-    if (realtime-ppd->bad<30) {
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat is blocked.");
-        return 1;
-    }
-
-    if (realtime-ppd->lasttalk[1]<1) {  // 0.3s per line
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds for excessive usage (1).");
-        ppd->bad=realtime;
-        return 1;
-    }
-    if (realtime-ppd->lasttalk[4]<10) { // 2s per line
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds for excessive usage (2).");
-        ppd->bad=realtime;
-        return 1;
-    }
-    if (realtime-ppd->lasttalk[9]<30) { // 3s per line
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds for excessive usage (3).");
-        ppd->bad=realtime;
+    if (realtime - ppd->bad < 30) {
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat is blocked.");
         return 1;
     }
 
-    if (strcasestr(text,"fuck") || strcasestr(text,"cunt") || strcasestr(text,"faggot")) {
-        log_char(cn,LOG_SYSTEM,0,"°c3Swearing is illegal in this game. While only a few words are blocked by the system, you will get punished and eventually banned if you swear using non-blocked words.");
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds.");
-        ppd->bad=realtime;
+    if (realtime - ppd->lasttalk[1] < 1) { // 0.3s per line
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds for excessive usage (1).");
+        ppd->bad = realtime;
+        return 1;
+    }
+    if (realtime - ppd->lasttalk[4] < 10) { // 2s per line
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds for excessive usage (2).");
+        ppd->bad = realtime;
+        return 1;
+    }
+    if (realtime - ppd->lasttalk[9] < 30) { // 3s per line
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds for excessive usage (3).");
+        ppd->bad = realtime;
         return 1;
     }
 
-    if (strlen(text)>3 && all_upper(text)) {
-        log_char(cn,LOG_SYSTEM,0,"°c3Using capitalized letters only is impolite. Trying to get around the block by using mostly caps will get you punished and eventually banned.");
-        log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds.");
-        ppd->bad=realtime;
+    if (strcasestr(text, "fuck") || strcasestr(text, "cunt") || strcasestr(text, "faggot")) {
+        log_char(cn, LOG_SYSTEM, 0, "°c3Swearing is illegal in this game. While only a few words are blocked by the system, you will get punished and eventually banned if you swear using non-blocked words.");
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds.");
+        ppd->bad = realtime;
+        return 1;
+    }
+
+    if (strlen(text) > 3 && all_upper(text)) {
+        log_char(cn, LOG_SYSTEM, 0, "°c3Using capitalized letters only is impolite. Trying to get around the block by using mostly caps will get you punished and eventually banned.");
+        log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds.");
+        ppd->bad = realtime;
         return 1;
     }
 
     // test for repeating long sentences
-    if (strlen(text)>20) {
-        for (n=flag=0; n<10; n++) {
-            if (!strncmp(ppd->last_sentence[n],text,78) && realtime-ppd->last_time[n]<30) {
-                if (ppd->last_cnt[n]>2 || realtime-ppd->last_time[n]<4) {
-                    log_char(cn,LOG_SYSTEM,0,"°c3Repeating the same sentence is impolite. Repeating variants of the same sentence will get you punished and eventually banned.");
-                    log_char(cn,LOG_SYSTEM,0,"°c3Chat has been blocked for 30 seconds.");
-                    ppd->bad=realtime;
+    if (strlen(text) > 20) {
+        for (n = flag = 0; n < 10; n++) {
+            if (!strncmp(ppd->last_sentence[n], text, 78) && realtime - ppd->last_time[n] < 30) {
+                if (ppd->last_cnt[n] > 2 || realtime - ppd->last_time[n] < 4) {
+                    log_char(cn, LOG_SYSTEM, 0, "°c3Repeating the same sentence is impolite. Repeating variants of the same sentence will get you punished and eventually banned.");
+                    log_char(cn, LOG_SYSTEM, 0, "°c3Chat has been blocked for 30 seconds.");
+                    ppd->bad = realtime;
                     return 1;
                 }
                 ppd->last_cnt[n]++;
-                ppd->last_time[ppd->last_pos]=realtime;
-                flag=1;
+                ppd->last_time[ppd->last_pos] = realtime;
+                flag = 1;
                 break;
             }
         }
         if (!flag) {
-            if (ppd->last_pos<0 || ppd->last_pos>9) ppd->last_pos=0;
-            strncpy(ppd->last_sentence[ppd->last_pos],text,78); ppd->last_sentence[ppd->last_pos][78]=0;
-            ppd->last_time[ppd->last_pos]=realtime;
-            ppd->last_cnt[ppd->last_pos]=1;
+            if (ppd->last_pos < 0 || ppd->last_pos > 9) ppd->last_pos = 0;
+            strncpy(ppd->last_sentence[ppd->last_pos], text, 78);
+            ppd->last_sentence[ppd->last_pos][78] = 0;
+            ppd->last_time[ppd->last_pos] = realtime;
+            ppd->last_cnt[ppd->last_pos] = 1;
             ppd->last_pos++;
         }
     }
 
-    for (n=9; n>0; n--) ppd->lasttalk[n]=ppd->lasttalk[n-1];
+    for (n = 9; n > 0; n--) ppd->lasttalk[n] = ppd->lasttalk[n - 1];
 
-    ppd->lasttalk[0]=realtime;
+    ppd->lasttalk[0] = realtime;
 
     return 0;
 }
 
-void shutup_bg(int cnID,int coID,int minutes) {
+void shutup_bg(int cnID, int coID, int minutes) {
     struct swear_ppd *ppd;
     int co;
 
-    for (co=getfirst_char(); co; co=getnext_char(co)) {
-        if (ch[co].ID==coID) break;
+    for (co = getfirst_char(); co; co = getnext_char(co)) {
+        if (ch[co].ID == coID) break;
     }
     if (!co) return;
 
-    if (!(ch[co].flags&CF_PLAYER)) return;
+    if (!(ch[co].flags & CF_PLAYER)) return;
 
-    ppd=set_data(co,DRD_SWEAR_PPD,sizeof(struct swear_ppd));
-    if (!ppd) return;   // oops...
+    ppd = set_data(co, DRD_SWEAR_PPD, sizeof(struct swear_ppd));
+    if (!ppd) return; // oops...
 
-    ppd->banned_till=realtime+(minutes*60);
+    ppd->banned_till = realtime + (minutes * 60);
 
-    if (minutes>0) log_char(co,LOG_SYSTEM,0,"°c3Your ability to talk has been disabled.");
-    else log_char(co,LOG_SYSTEM,0,"°c3Your ability to talk has been enabled.");
+    if (minutes > 0) log_char(co, LOG_SYSTEM, 0, "°c3Your ability to talk has been disabled.");
+    else log_char(co, LOG_SYSTEM, 0, "°c3Your ability to talk has been enabled.");
 
-    tell_chat(0,cnID,1,"%s cannot talk for %d minutes.",ch[co].name,minutes);
+    tell_chat(0, cnID, 1, "%s cannot talk for %d minutes.", ch[co].name, minutes);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

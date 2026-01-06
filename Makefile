@@ -685,3 +685,8 @@ create_character:	create_character.c
 clean:
 	-rm server .obj/*.o *~ zones/*/*~ runtime/*/* chatserver create_weapons create_armor create_account create_character
 
+pretty:
+	@git ls-files -z -- '*.[ch]' | xargs -0 -r clang-format -i
+
+pretty-check:
+	@git ls-files -z -- '*.[ch]' | xargs -0 -r clang-format --dry-run -Werror

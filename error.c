@@ -6,7 +6,7 @@
 
 int error;
 
-static char *errname[]={
+static char *errname[] = {
     "Everything's fine, dear",
     "Illegal coordinates",
     "Target is blocked",
@@ -19,38 +19,37 @@ static char *errname[]={
     "No citem present",
     "There is already an item",
     "Illegal inventory position",
-    "Requirements not fulfilled",           //12
+    "Requirements not fulfilled", //12
     "No character present",
     "Illegal attack (the victim is protected)",
     "Illegal item number",
-    "Character is unconcious or dead",      //16
+    "Character is unconcious or dead", //16
     "Not enough mana",
     "Target points to self",
-    "Illegal hurt type",                //19
+    "Illegal hurt type", //19
     "Target is not visible",
-    "Target is unconcious",             //21
+    "Target is unconcious", //21
     "Unknown spell",
     "Item not usable",
-    "Not a dead body",              //24
+    "Not a dead body", //24
     "Unknown skill",
-    "Illegal container position",           //26
+    "Illegal container position", //26
     "Not a container",
-    "Spell already working",            //28
+    "Spell already working", //28
     "Illegal store number",
-    "Illegal store position",           //30
+    "Illegal store position", //30
     "Item is sold out",
-    "Not enough gold",              //32
+    "Not enough gold", //32
     "Quest Item",
-    "Access denied",                //34
+    "Access denied", //34
     "Not idle",
-    "Not a player character",           //36
+    "Not a player character", //36
     "Would have no effect",
-    "Already there",                //38
-    "Error number out of bounds"
-};
+    "Already there", //38
+    "Error number out of bounds"};
 
-char* get_error_string(int err) {
-    if (err<0 || err>=sizeof(errname)/sizeof(char *)) err=sizeof(errname)/sizeof(char *)-1;
+char *get_error_string(int err) {
+    if (err < 0 || err >= sizeof(errname) / sizeof(char *)) err = sizeof(errname) / sizeof(char *) - 1;
 
     return errname[err];
 }
