@@ -8,15 +8,15 @@ table structure eventually.
 ## Building
 
 ### Ubuntu
-
 To run under Ubuntu 22.04.4 LTS (tested and working as of 2024.06.27)
 
 ```
 sudo apt-get update
 sudo apt install git
-git clone https://github.com/DanielBrockhaus/astonia_server.git
+git clone https://github.com/AstoniaCommunity/astonia_community_server3.git
 sudo apt-get install gcc-multilib
 sudo dpkg --add-architecture i386
+sudo apt-get update # yes, we need to run this again to get the i386 packages
 sudo apt install make
 sudo apt install lib32z-dev libargon2-dev:i386
 sudo apt install libmysqlclient-dev:i386
@@ -31,4 +31,17 @@ sudo mysql_secure_installation
 echo "Welcome to Astonia" >motd.txt
 rm MYSQLPASSWD
 # the "my" script is very handy, but also a security risk!
+make -j 4
+./server
+# look for errors, then hit CTRL-C to stop
+./start # will start all areas and the chatserver
+./create_account <email> <password>
+./create_character 1 Ishtar MWG
+```
+
+Now you should be able to connect to the server with a client, using
+something like:
+
+```
+bin\moac -uIshtar -p<password> -d<server IP or name> -v35
 ```
