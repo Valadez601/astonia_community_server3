@@ -1162,11 +1162,11 @@ int swap(int cn, int pos) {
             error = ERR_ILLEGAL_INVPOS;
             return 0;
         } else if (pos < 12) { // wear position
-            if (pos == WN_LHAND && (in2 = ch[cn].item[WN_RHAND]) && (it[in2].flags&(IF_TWOHAND|IF_STAFF))) {
-                if (store_item(cn,in2)) ch[cn].item[WN_RHAND] = 0;
+            if (pos == WN_LHAND && (in2 = ch[cn].item[WN_RHAND]) && (it[in2].flags & (IF_TWOHAND | IF_STAFF))) {
+                if (store_item(cn, in2)) ch[cn].item[WN_RHAND] = 0;
             }
-            if (pos == WN_RHAND && (in2 = ch[cn].item[WN_LHAND]) && (it[in].flags&(IF_TWOHAND|IF_STAFF))) {
-                if (store_item(cn,in2)) ch[cn].item[WN_LHAND] = 0;
+            if (pos == WN_RHAND && (in2 = ch[cn].item[WN_LHAND]) && (it[in].flags & (IF_TWOHAND | IF_STAFF))) {
+                if (store_item(cn, in2)) ch[cn].item[WN_LHAND] = 0;
             }
             if (!can_wear(cn, in, pos)) {
                 error = ERR_REQUIREMENTS;
@@ -1557,7 +1557,7 @@ int equip_item(int cn, int in, int pos) {
         return swap(cn, n);
     }
     // special case for two-handed weapons. yuck
-    if (((it[in].flags & IF_STAFF) ||(it[in].flags & IF_TWOHAND)) && ch[cn].item[WN_LHAND]) {
+    if (((it[in].flags & IF_STAFF) || (it[in].flags & IF_TWOHAND)) && ch[cn].item[WN_LHAND]) {
         swap(cn, WN_LHAND);
         store_citem(cn);
     }
